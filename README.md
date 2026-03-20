@@ -145,7 +145,16 @@ pip3 install requests
 ```
 /var/ossec/bin/wazuh-control restart
 ```
+
 #### 4. Verify the alerts.
 
 Everything should be working fine once we restart the server, you can trigger an alert to make sure that they're being notified correctly. 
 
+---
+### Extra documentation
+```
+https://documentation.wazuh.com/current/user-manual/manager/integration-with-external-apis.html
+```
+```
+https://wazuh.com/blog/how-to-integrate-external-software-using-integrator/
+```
