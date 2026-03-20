@@ -25,9 +25,43 @@ Debajo de la etiqueta <global></global> insertamos el siguiente trozo de código
     <alert_format>json</alert_format>
   </integration>
 ```
+Entonces reiniciamos Wazuh Manager.
 
+#### 3. Instalar los scripts y darles permisos.
 
+Ahora para obtener los scripts podemos hacer dos cosas.
+Descargar la carpeta de Make y ponerla dentro de:
+```
+/var/ossec/integrations
+```
+
+o bien
+
+Asegurarnos de tener permisos de superusuario temporalmente:
+```
+sudo su
+```
+Abrir la carpeta de integraciones:
+```
+cd /var/ossec/integrations
+```
+Descargar los archivos:
+```
+wget https://raw.githubusercontent.com/vnd76/IntegracionWazuh-Make/refs/heads/main/integrations/make/custom-make
+wget https://raw.githubusercontent.com/vnd76/IntegracionWazuh-Make/refs/heads/main/integrations/make/custom-make.py
+```
+
+Para verificar que todo se ha descargado correctamente:
+```
+ls -l
+```
+
+Una vez tenemos los scripts en la carpeta correcta, les daremos permisos de ejecución.
+```
+sudo chmod 750 /var/ossec/integrations/custom-*
+sudo chown root:wazuh /var/ossec/integrations/custom-*
+```
 ---
 
-### Descripción - Inglés
+### Description - English
 Wazuh custom integration for Make that allows you to receive alerts and monitor them. There's two files, the bash script allows the python file (.py) to be read correctly.
