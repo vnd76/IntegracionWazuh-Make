@@ -35,7 +35,7 @@ Descargar la carpeta de Make y ponerla dentro de:
 /var/ossec/integrations
 ```
 
-o bien
+**o bien**
 
 Asegurarnos de tener permisos de superusuario temporalmente:
 ```
@@ -56,11 +56,23 @@ Para verificar que todo se ha descargado correctamente:
 ls -l
 ```
 
-Una vez tenemos los scripts en la carpeta correcta, les daremos permisos de ejecución.
+Una vez tenemos los scripts descargados en la carpeta correcta, les daremos permisos de ejecución.
 ```
 sudo chmod 750 /var/ossec/integrations/custom-*
 sudo chown root:wazuh /var/ossec/integrations/custom-*
 ```
+Instalamos dependencias pip y reiniciamos Wazuh.
+```
+sudo apt-get install python3-pip
+pip3 install requests
+```
+```
+/var/ossec/bin/wazuh-control restart
+```
+#### 4. Comprobar las alertas.
+
+Todo debería estar en marcha una vez el servidor ha sido reiniciado, puedes hacer un simulacro de alerta para asegurarte de que las alertas son notificadas correctamente. 
+
 ---
 
 ### Description - English
