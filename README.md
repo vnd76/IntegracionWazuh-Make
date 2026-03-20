@@ -71,9 +71,81 @@ pip3 install requests
 ```
 #### 4. Comprobar las alertas.
 
-Todo debería estar en marcha una vez el servidor ha sido reiniciado, puedes hacer un simulacro de alerta para asegurarte de que las alertas son notificadas correctamente. 
+Todo debería estar en marcha una vez el servidor ha sido reiniciado, puedes hacer un simulacro para asegurarte de que las alertas son notificadas correctamente. 
 
 ---
 
 ### Description - English
 Wazuh custom integration for Make that allows you to receive alerts and monitor them. There's two files, the bash script allows the python file (.py) to be read correctly.
+
+
+---
+### Steps to follow
+
+#### 1. Create a webhook in Make.
+
+Insert the module WEBHOOK, then give it a name. After that, a link will be generated, we will use this later to establish a connection.
+
+#### 2. Configure the integration in Wazuh.
+
+Log in, after that go to:
+
+Server Management > Settings
+
+Click on the option "Edit Configuration" that is in the top right corner.
+Under the tag <global></global> insert the following code:
+```
+  <integration>
+    <name>custom-make</name>
+    <hook_url>https://hook.eu1.make.com/4vmo1kve9voqqs8vfic1s024vp72uwkc</hook_url>
+    <alert_format>json</alert_format>
+  </integration>
+```
+Restart Wazuh Manager.
+
+#### 3.Download the scripts and give them permissions.
+
+Now, to obtain the scripts you can do two things.
+Download the make folder and put it inside:
+```
+/var/ossec/integrations
+```
+
+**or**
+
+Make sure to have sudo permissions:
+```
+sudo su
+```
+Open the integrations folder:
+```
+cd /var/ossec/integrations
+```
+Download the files:
+```
+wget https://raw.githubusercontent.com/vnd76/IntegracionWazuh-Make/refs/heads/main/integrations/make/custom-make
+wget https://raw.githubusercontent.com/vnd76/IntegracionWazuh-Make/refs/heads/main/integrations/make/custom-make.py
+```
+
+To verify that everything was downloaded correctly:
+```
+ls -l
+```
+
+Once we have the scripts in the right folder, give them execution permissions.
+```
+sudo chmod 750 /var/ossec/integrations/custom-*
+sudo chown root:wazuh /var/ossec/integrations/custom-*
+```
+Install pip dependencies and restart Wazuh.
+```
+sudo apt-get install python3-pip
+pip3 install requests
+```
+```
+/var/ossec/bin/wazuh-control restart
+```
+#### 4. Verify the alerts.
+
+Everything should be working fine once we restart the server, you can trigger an alert to make sure that they're being notified correctly. 
+
