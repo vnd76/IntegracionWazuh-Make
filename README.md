@@ -14,7 +14,7 @@ Insertamos el módulo de WEBHOOK, y acto seguido le damos un nombre. Una vez hec
 
 Iniciamos sesión en Wazuh y vamos a:
 
-Server Management > Settings
+_Server Management > Settings_
 
 Nos dirigimos a la opción "Edit Configuration" que se encuentra en la esquina superior derecha.
 Debajo de la etiqueta <global></global> insertamos el siguiente trozo de código:
@@ -90,7 +90,7 @@ Insert the module WEBHOOK, then give it a name. After that, a link will be gener
 
 Log in, after that go to:
 
-Server Management > Settings
+_Server Management > Settings_
 
 Click on the option "Edit Configuration" that is in the top right corner.
 Under the tag <global></global> insert the following code:
